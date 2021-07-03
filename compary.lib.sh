@@ -14,12 +14,3 @@ function compare_grab_op() {
 	echo $OP
 }
 
-function _actual_func() {
-	OP=`compare_grab_op`
-	echo
-	echo OP: $OP
-}
-
-complete -F _actual_func foop
-
-
