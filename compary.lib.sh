@@ -1,16 +1,13 @@
 
-function compare_grab_op() {
-	local X
-	local GREP=
-	# Filter grep with args passed in as only available options.
-	[ $# -gt 0 ] && \
-		GREP=`echo $@ | sed 's/\s\s*/|/g'`
+function complete_grab_op() {
 	# Get the token before the current.
-	X=($COMP_CWORD-1)
+	local let X=($COMP_CWORD-1)
 	local OP=${COMP_WORDS[$X]}
 	# Run the grep if a list of options were provided.
-	[ ! -z "$GREP" ] && \
+	[ $# -gt 0 ] && {
+		local GREP=`echo $@ | sed 's/\s\s*/|/g'`
 		OP=`echo $OP | grep -P "($GREP)" || echo ''`
+	}
 	echo $OP
 }
 
