@@ -6,7 +6,7 @@ function complete_grab_op() {
 	# Run the grep if a list of options were provided.
 	[ $# -gt 0 ] && {
 		local GREP=`echo $@ | sed 's/\s\s*/|/g'`
-		OP=`echo $OP | grep -P "($GREP)" || echo ''`
+		OP=`echo $OP | grep -P "^($GREP)\$" || echo ''`
 	}
 	echo $OP
 }
